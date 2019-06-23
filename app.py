@@ -4,6 +4,7 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 SCALE = 2
 PLAYER_SPEED = 5
+PLAYER_1_DEFAULT_POSITION = "right"
 
 
 class Player(object):
@@ -26,17 +27,15 @@ class PlayerLuffy(Player):
         self.sprite_list.append(move_sprite)
 
     def move_animation(self, direction) -> [arcade.Texture]:
-        mirror = False
-        if direction == "left":
-            mirror = True
+        mirror = (direction == "left")
         t1 = arcade.load_texture(self.sprite_path, 387, 12, 55, 70, mirrored=mirror, scale=SCALE)
         t2 = arcade.load_texture(self.sprite_path, 440, 12, 51, 70, mirrored=mirror, scale=SCALE)
-        t3 = arcade.load_texture(self.sprite_path, 490, 12, 58, 70, mirrored=mirror,scale=SCALE)
-        t4 = arcade.load_texture(self.sprite_path, 547, 12, 51, 70, mirrored=mirror,scale=SCALE)
-        t5 = arcade.load_texture(self.sprite_path, 597, 12, 51, 70, mirrored=mirror,scale=SCALE)
-        t6 = arcade.load_texture(self.sprite_path, 646, 12, 52, 70, mirrored=mirror,scale=SCALE)
-        t7 = arcade.load_texture(self.sprite_path, 698, 12, 58, 70, mirrored=mirror,scale=SCALE)
-        t8 = arcade.load_texture(self.sprite_path, 755, 12, 51, 70, mirrored=mirror,scale=SCALE)
+        t3 = arcade.load_texture(self.sprite_path, 490, 12, 58, 70, mirrored=mirror, scale=SCALE)
+        t4 = arcade.load_texture(self.sprite_path, 547, 12, 51, 70, mirrored=mirror, scale=SCALE)
+        t5 = arcade.load_texture(self.sprite_path, 597, 12, 51, 70, mirrored=mirror, scale=SCALE)
+        t6 = arcade.load_texture(self.sprite_path, 646, 12, 52, 70, mirrored=mirror, scale=SCALE)
+        t7 = arcade.load_texture(self.sprite_path, 698, 12, 58, 70, mirrored=mirror, scale=SCALE)
+        t8 = arcade.load_texture(self.sprite_path, 755, 12, 51, 70, mirrored=mirror, scale=SCALE)
         return [t1, t2, t3, t4, t5, t6, t7, t8]
 
     def stand_animation(self, direction) -> [arcade.Texture]:
@@ -44,13 +43,13 @@ class PlayerLuffy(Player):
         if direction == "left":
             mirror = True
         t1 = arcade.load_texture(self.sprite_path, 0, 10, 46, 66, mirrored=mirror, scale=SCALE)
-        t2 = arcade.load_texture(self.sprite_path, 44, 10 , 44, 66, mirrored=mirror, scale=SCALE)
-        t3 = arcade.load_texture(self.sprite_path, 88, 7 , 44, 69, mirrored=mirror, scale=SCALE)
-        t4 = arcade.load_texture(self.sprite_path, 139, 7 , 44, 69, mirrored=mirror, scale=SCALE)
-        t5 = arcade.load_texture(self.sprite_path, 181, 5 , 40, 72, mirrored=mirror, scale=SCALE)
-        t6 = arcade.load_texture(self.sprite_path, 139, 7 , 44, 69, mirrored=mirror, scale=SCALE)
-        t7 = arcade.load_texture(self.sprite_path, 88, 7 , 44, 69, mirrored=mirror, scale=SCALE)
-        t8 = arcade.load_texture(self.sprite_path, 44, 10 , 44, 66, mirrored=mirror, scale=SCALE)
+        t2 = arcade.load_texture(self.sprite_path, 44, 10, 44, 66, mirrored=mirror, scale=SCALE)
+        t3 = arcade.load_texture(self.sprite_path, 88, 7, 44, 69, mirrored=mirror, scale=SCALE)
+        t4 = arcade.load_texture(self.sprite_path, 139, 7, 44, 69, mirrored=mirror, scale=SCALE)
+        t5 = arcade.load_texture(self.sprite_path, 181, 5, 40, 72, mirrored=mirror, scale=SCALE)
+        t6 = arcade.load_texture(self.sprite_path, 139, 7, 44, 69, mirrored=mirror, scale=SCALE)
+        t7 = arcade.load_texture(self.sprite_path, 88, 7, 44, 69, mirrored=mirror, scale=SCALE)
+        t8 = arcade.load_texture(self.sprite_path, 44, 10, 44, 66, mirrored=mirror, scale=SCALE)
         return [t1, t2, t3, t4, t5, t6, t7, t8]
 
     def get_sprite(self) -> arcade.AnimatedTimeSprite:
@@ -79,7 +78,7 @@ class MyGame(arcade.Window):
 
     def setup(self):
         self.background = arcade.load_texture("assets/backgrounds/arena.png")
-        self.player_1.setup_sprites("right")
+        self.player_1.setup_sprites(PLAYER_1_DEFAULT_POSITION)
 
     def on_draw(self):
         arcade.start_render()
